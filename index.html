@@ -28,110 +28,116 @@
     <img src="http://placehold.it/1250x200" alt="">
   </header>
 
-
-  <form id="regatta-search-form" class="form-horizontal col-sm-3">
-    <fieldset>
-      <legend>Regatta Search</legend>
-      <div class="form-group">
-        <label for="city" class="col-lg-2 control-label">City</label>
-        <div class="col-lg-10">
-          <input type="text" class="form-control col-md-3" id="city" placeholder="City">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="states" class="col-sm-2 control-label">State</label>
-        <div class="col-md-6 col-md-4 col-lg-4">
-          <select class="form-control col-md-12" id="states">
-            <option default value="Select">
-            Select</option>
-            <option value="AL">AL</option>
-            <option value="AK">AK</option>
-            <option value="AZ">AZ</option>
-            <option value="AR">AR</option>
-            <option value="CA">CA</option>
-            <option value="CO">CO</option>
-            <option value="CT">CT</option>
-            <option value="DE">DE</option>
-            <option value="DC">DC</option>
-            <option value="FL">FL</option>
-            <option value="GA">GA</option>
-            <option value="HI">HI</option>
-            <option value="ID">ID</option>
-            <option value="IL">IL</option>
-            <option value="IN">IN</option>
-            <option value="IA">IA</option>
-            <option value="KS">KS</option>
-            <option value="KY">KY</option>
-            <option value="LA">LA</option>
-            <option value="ME">ME</option>
-            <option value="MD">MD</option>
-            <option value="MA">MA</option>
-            <option value="MI">MI</option>
-            <option value="MN">MN</option>
-            <option value="MS">MS</option>
-            <option value="MO">MO</option>
-            <option value="MT">MT</option>
-            <option value="NE">NE</option>
-            <option value="NV">NV</option>
-            <option value="NH">NH</option>
-            <option value="NJ">NJ</option>
-            <option value="NM">NM</option>
-            <option value="NY">NY</option>
-            <option value="NC">NC</option>
-            <option value="ND">ND</option>
-            <option value="OH">OH</option>
-            <option value="OK">OK</option>
-            <option value="OR">OR</option>
-            <option value="PA">PA</option>
-            <option value="RI">RI</option>
-            <option value="SC">SC</option>
-            <option value="SD">SD</option>
-            <option value="TN">TN</option>
-            <option value="TX">TX</option>
-            <option value="UT">UT</option>
-            <option value="VT">VT</option>
-            <option value="VA">VA</option>
-            <option value="WA">WA</option>
-            <option value="WV">WV</option>
-            <option value="WI">WI</option>
-            <option value="WY">WY</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="col-sm-2 control-label"></label>
-        <div class="col-sm-10">
-          <div class="radio">
-            <label>
-              <input type="radio" name="sprint-head" id="sprint" value="sprint" checked="">
-              Sprint
-            </label>
+  <main class="container">
+    <section class="row first-row">
+      <form id="regatta-search-form" class="form-horizontal col-sm-3">
+        <fieldset>
+          <legend>Regatta Search</legend>
+          <div class="form-group">
+            <label for="city" class="col-lg-2 control-label">City</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control col-md-3" id="city" placeholder="City">
+            </div>
           </div>
 
-          <div class="radio">
-            <label>
-              <input type="radio" name="sprint-head" id="head" value="head">
-              Head
-            </label>
+          <div class="form-group">
+            <label for="states" class="col-sm-2 control-label">State</label>
+            <div class="col-md-6 col-md-4 col-lg-4">
+              <select class="form-control col-md-12" id="states">
+                <option default value="Select">
+                  Select</option>
+                  <option value="AL">AL</option>
+                  <option value="AK">AK</option>
+                  <option value="AZ">AZ</option>
+                  <option value="AR">AR</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DE">DE</option>
+                  <option value="DC">DC</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="IA">IA</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="ME">ME</option>
+                  <option value="MD">MD</option>
+                  <option value="MA">MA</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MS">MS</option>
+                  <option value="MO">MO</option>
+                  <option value="MT">MT</option>
+                  <option value="NE">NE</option>
+                  <option value="NV">NV</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NY">NY</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VT">VT</option>
+                  <option value="VA">VA</option>
+                  <option value="WA">WA</option>
+                  <option value="WV">WV</option>
+                  <option value="WI">WI</option>
+                  <option value="WY">WY</option>
+                </select>
+            </div>
           </div>
-        </div>
-      </div>
 
+          <div class="form-group">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+              <div class="radio">
+                <label>
+                    <input type="radio" name="sprint-head" id="sprint" value="sprint" checked="">
+                    Sprint
+                  </label>
+              </div>
 
+              <div class="radio">
+                <label>
+                    <input type="radio" name="sprint-head" id="head" value="head">
+                    Head
+                  </label>
+              </div>
+            </div>
+          </div>
 
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <div class="col-lg-10 col-lg-offset-2">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </div>
-    </fieldset>
-  </form>
-  <section id="responseWrapper" class="api-responses">
+        </fieldset>
+      </form>
 
-  </section>
+    </section>
+    <section class="row">
+      <section id="response-wrapper" class="api-responses col-md-3">
+        <!-- <section class="row response">
+          <h5>hello</h5>
+        </section> -->
+      </section>
+    </section>
+  </main>
 </body>
 
 </html>

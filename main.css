@@ -8,11 +8,21 @@
 img{
   width: 100%;
 }
-span{
-  color: red;
+
+main{
+  margin: auto;
 }
 
 #regatta-search-form{
-  margin: 30px 40px;
+  margin-top: 30px;
+}
 
+.response{
+  margin-top: 15px;
+  background-color: rgba(149, 233, 147, 0.55);
+  border-radius: 10px;
+}
+
+section h5{
+  margin: 10px;
 }
