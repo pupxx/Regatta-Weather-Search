@@ -44,10 +44,12 @@ $('form').on('submit', function(e){
       }).then(function(key){
 //key returned and sent to RC with lat and lng info for list of regatta's
         var $tempKey = key.access_token;
+        var $radioValue = $("input[name='sprint-head']:checked").val();
+        console.log($radioValue);
         $('.spinner').show();
           $.ajax({
               type: "GET",
-              url: `http://galvanize-cors-proxy.herokuapp.com/https://api.regattacentral.com/v4.0/regattas?country=US&latitude=${$lat}&longitude=${$lng}&distance=50&timeframe=upcoming`,
+              url: `http://galvanize-cors-proxy.herokuapp.com/https://api.regattacentral.com/v4.0/regattas?country=US&type=${$radioValue}&latitude=${$lat}&longitude=${$lng}&distance=50&timeframe=upcoming`,
               headers: {"Authorization": $tempKey,
                         "Accept": "application/json"}
               }).then(function(regattaInfo){
@@ -62,23 +64,20 @@ $('form').on('submit', function(e){
                   var allDates = [];
                   for (var j in regattaInfo.data[i].regattaDates){
                     allDates.push(regattaInfo.data[i].regattaDates[j]);
-                    // $regattaDate = moment(regattaInfo.data[i].regattaDates[j]).format('LL');
-                    // console.log(allDates);
                   }
+
                   var $dates = '';
                   var $lastDate = '';
                   for (var k in allDates){
                     if(allDates.length === 1){
-                      $dates = `${moment(allDates[0]).format('LL')}`
-                      console.log($dates);
+                      $dates = `${moment(allDates[0]).format('LL')}`;
                     }else if(k < allDates.length -1){
                       $lastDate = `${moment(allDates[k.length]).format('LL')}`;
                       $dates += `${moment(allDates[k]).format('LL')} -  ${$lastDate}`;
-                      console.log($dates);
                     }
 
                   }
-                  // console.log(dates);
+
                   allDates =[];
                   $('#response-wrapper').append(
                   `<section class="row response">
