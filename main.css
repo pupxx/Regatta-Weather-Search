@@ -14,9 +14,12 @@ main{
   margin: auto;
 }
 
-#regatta-search-form{
+#regatta-search-form,
+.weatherWrapper{
   margin-top: 30px;
 }
+
+
 
 .response{
   margin-top: 15px;
@@ -39,4 +42,8 @@ section h5{
 h5.col-sm-11{
   text-decoration: underline;
   padding: 0;
+}
+
+a{
+  cursor: pointer;
 }

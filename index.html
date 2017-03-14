@@ -31,20 +31,20 @@
 
   <main class="container">
     <section class="row first-row">
-      <form id="regatta-search-form" class="form-horizontal col-sm-3">
+      <form id="regatta-search-form" class="form-horizontal col-xs-3">
         <fieldset>
           <legend>Regatta Search</legend>
           <div class="form-group">
-            <label for="city" class="col-lg-2 control-label">City</label>
-            <div class="col-lg-10">
-              <input type="text" class="form-control col-md-3" id="city" placeholder="City">
+            <label for="city" class="col-xs-2 control-label">City</label>
+            <div class="col-xs-10">
+              <input type="text" class="form-control col-xs-3" id="city" placeholder="City">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="states" class="col-sm-2 control-label">State</label>
-            <div class="col-md-4">
-              <select class="form-control col-md-3" id="states">
+            <label for="states" class="col-xs-2 control-label">State</label>
+            <div class="col-xs-4">
+              <select class="form-control col-xs-3" id="states">
                 <option default value="Select">
                   Select</option>
                   <option value="AL">AL</option>
@@ -103,7 +103,7 @@
           </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label"></label>
+            <label class="col-xs-2 control-label"></label>
             <div class="col-sm-10">
               <div class="radio">
                 <label>
@@ -122,23 +122,40 @@
           </div>
 
           <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
+            <div class="col-xs-10 col-xs-offset-2">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
 
         </fieldset>
       </form>
+      <div class="col-xs-9">
+
+        <section class="row">
+          <div class="col-xs-offset-3">
+            <h3>10 Day Forcast</h3>
+          </div>
+        </section>
+
+        <section class=" row weatherWrapper">
+          <!-- weather images get appended here -->
+        </section>
+
+        <section class="row weatherDetail">
+
+        </section>
+
+      </div>
     </section>
 
     <section class="row">
-      <section class="spinner col-lg-offset-1">
+      <section class="spinner col-xs-offset-1">
         <i class="fa fa-refresh fa-spin fa-3x fa-fw spinner"></i>
       </section>
-      <section id="response-wrapper" class="api-responses col-md-3">
+      <section id="response-wrapper" class="api-responses col-xs-3">
 
         <!-- Appended div's go here -->
-        
+
       </section>
     </section>
   </main>

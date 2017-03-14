@@ -76,11 +76,10 @@ $('form').on('submit', function(e){
                     }
 
                   }
-
                   allDates =[];
                   $('#response-wrapper').append(
                   `<section class="row response">
-                    <h5 class="col-sm-11"><a class="name" data-lat="${$regattaLat}" data-lng="${$regattaLng}">${$regattaName}</a></h5>
+                    <h5><a class="name" data-date="${$dates}">${$regattaName}</a></h5>
                     <h6>Date: ${$dates}</h6>
                     <h6>Venue: ${$regattaVenue}</h6>
                   </section>`).hide().fadeIn(1000);
@@ -92,8 +91,23 @@ $('form').on('submit', function(e){
                     url:
                      `http://api.wunderground.com/api/98df7348c668dee6/forecast10day/q/${$state}/${$city}.json`,
                     method: 'Get'
-                  }).then(function(data){
-                    console.log(data);
+                  }).then(function(forecast){
+                    console.log(forecast);
+                    var $tenDayForecast = forecast.forecast.simpleforecast.forecastday;
+                    for(var i in $tenDayForecast){
+                      $icon = $tenDayForecast[i].icon_url;
+                      $day = $tenDayForecast[i].date.weekday_short;
+                      $calendarDate = $tenDayForecast[i].date.day;
+                      console.log($day);
+
+                      $('.weatherWrapper').append(`
+                      <section class="weatherDay col-xs-1">
+                        <img src="${$icon}" alt="">
+                        <section>${$day}</section>
+                        <section>${$calendarDate}</section>
+                      </section>`);
+                    }
+
                   }).catch(function(error){
                     alert('error', error);
                   });
