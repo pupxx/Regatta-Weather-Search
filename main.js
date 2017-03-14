@@ -19,6 +19,7 @@ console.log("Cheryln, you are doing great!  Keep Going!!");
 
 $('form').on('submit', function(e){
   e.preventDefault();
+  $('#response-wrapper').children().remove();
   $city = $('#city').val();
   $state = $('select option:selected').val();
   console.log($city);
@@ -51,18 +52,25 @@ $('form').on('submit', function(e){
               headers: {"Authorization": $tempKey,
                         "Accept": "application/json"}
               }).then(function(regattaInfo){
-                
-                $regattaName = regattaInfo.data[0].name;
-                $regattaDate = regattaInfo.data[0].regattaDates[0];
-                $regattaVenu = regattaInfo.data[0].venue.name;
-                $regattaLat = regattaInfo.data[0].venue.latitude;
-                $regattaLng = regattaInfo.data[0].venue.longitude;
+                for (var i in regattaInfo.data){
+                  $regattaName = regattaInfo.data[i].name;
+                  $regattaDate = new Date(regattaInfo.data[i].regattaDates[i]).toString();
+                  $regattaVenue = regattaInfo.data[i].venue.name;
+                  $regattaLat = regattaInfo.data[i].venue.latitude;
+                  $regattaLng = regattaInfo.data[i].venue.longitude;
+                  $('#response-wrapper').append(
+                  `<section class="row response">
+                    <h5>${$regattaName}</h5>
+                    <h5>${$regattaDate}</h5>
+                    <h5>${$regattaVenue}</h5>
+                  </section>`).hide().fadeIn(1000);
+                }
 
-                console.log($regattaName);
-                console.log(new Date($regattaDate));
-                console.log($regattaVenu);
-                console.log($regattaLat);
-                console.log($regattaLng);
+                // console.log($regattaName);
+                // console.log(new Date($regattaDate));
+                // console.log($regattaVenue);
+                // console.log($regattaLat);
+                // console.log($regattaLng);
               }).catch(function(err){
                 alert('Error processing request.');
               });
