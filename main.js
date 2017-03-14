@@ -58,32 +58,34 @@ $('form').on('submit', function(e){
                   $regattaVenue = regattaInfo.data[i].venue.name;
                   $regattaLat = regattaInfo.data[i].venue.latitude;
                   $regattaLng = regattaInfo.data[i].venue.longitude;
-                  
+
                   var allDates = [];
                   for (var j in regattaInfo.data[i].regattaDates){
                     allDates.push(regattaInfo.data[i].regattaDates[j]);
                     // $regattaDate = moment(regattaInfo.data[i].regattaDates[j]).format('LL');
                     // console.log(allDates);
                   }
-                  var dates = '';
+                  var $dates = '';
+                  var $lastDate = '';
                   for (var k in allDates){
                     if(allDates.length === 1){
-                      dates = `${moment(allDates[0]).format('LL')}`
-                      console.log(dates);
+                      $dates = `${moment(allDates[0]).format('LL')}`
+                      console.log($dates);
                     }else if(k < allDates.length -1){
-                      dates += `${moment(allDates[k]).format('LL')}, `;
-                      console.log(dates + `${moment(allDates[k]).format('LL')}`);
+                      $lastDate = `${moment(allDates[k.length]).format('LL')}`;
+                      $dates += `${moment(allDates[k]).format('LL')} -  ${$lastDate}`;
+                      console.log($dates);
                     }
 
                   }
                   // console.log(dates);
                   allDates =[];
-                  // $('#response-wrapper').append(
-                  // `<section class="row response">
-                  //   <h5>${$regattaName}</h5>
-                  //   <h6>Date: ${$regattaDate}</h6>
-                  //   <h6>Venue: ${$regattaVenue}</h6>
-                  // </section>`).hide().fadeIn(1000);
+                  $('#response-wrapper').append(
+                  `<section class="row response">
+                    <h5>${$regattaName}</h5>
+                    <h6>Date: ${$dates}</h6>
+                    <h6>Venue: ${$regattaVenue}</h6>
+                  </section>`).hide().fadeIn(1000);
                 }
               }).catch(function(err){
                 alert('Error processing request.');
