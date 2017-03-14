@@ -81,7 +81,7 @@ $('form').on('submit', function(e){
                   allDates =[];
                   $('#response-wrapper').append(
                   `<section class="row response">
-                    <h5>${$regattaName}</h5>
+                    <h5 class="col-sm-11"><a class="name" data-lat="${$regattaLat}" data-lng="${$regattaLng}">${$regattaName}</a></h5>
                     <h6>Date: ${$dates}</h6>
                     <h6>Venue: ${$regattaVenue}</h6>
                   </section>`).hide().fadeIn(1000);

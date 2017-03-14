@@ -4,6 +4,7 @@
   width: 100%;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 img{
   width: 100%;
@@ -32,8 +33,10 @@ main{
 section h6,
 section h5{
   margin: 5px;
+  padding: 0;
 }
 
-section h5{
+h5.col-sm-11{
   text-decoration: underline;
+  padding: 0;
 }
