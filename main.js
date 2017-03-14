@@ -44,33 +44,47 @@ $('form').on('submit', function(e){
       }).then(function(key){
 //key returned and sent to RC with lat and lng info for list of regatta's
         var $tempKey = key.access_token;
-          console.log($tempKey);
-
+        $('.spinner').show();
           $.ajax({
               type: "GET",
               url: `http://galvanize-cors-proxy.herokuapp.com/https://api.regattacentral.com/v4.0/regattas?country=US&latitude=${$lat}&longitude=${$lng}&distance=50&timeframe=upcoming`,
               headers: {"Authorization": $tempKey,
                         "Accept": "application/json"}
               }).then(function(regattaInfo){
+                $('.spinner').hide();
+                console.log(regattaInfo);
                 for (var i in regattaInfo.data){
                   $regattaName = regattaInfo.data[i].name;
-                  $regattaDate = new Date(regattaInfo.data[i].regattaDates[i]).toString();
                   $regattaVenue = regattaInfo.data[i].venue.name;
                   $regattaLat = regattaInfo.data[i].venue.latitude;
                   $regattaLng = regattaInfo.data[i].venue.longitude;
-                  $('#response-wrapper').append(
-                  `<section class="row response">
-                    <h5>${$regattaName}</h5>
-                    <h5>${$regattaDate}</h5>
-                    <h5>${$regattaVenue}</h5>
-                  </section>`).hide().fadeIn(1000);
-                }
+                  
+                  var allDates = [];
+                  for (var j in regattaInfo.data[i].regattaDates){
+                    allDates.push(regattaInfo.data[i].regattaDates[j]);
+                    // $regattaDate = moment(regattaInfo.data[i].regattaDates[j]).format('LL');
+                    // console.log(allDates);
+                  }
+                  var dates = '';
+                  for (var k in allDates){
+                    if(allDates.length === 1){
+                      dates = `${moment(allDates[0]).format('LL')}`
+                      console.log(dates);
+                    }else if(k < allDates.length -1){
+                      dates += `${moment(allDates[k]).format('LL')}, `;
+                      console.log(dates + `${moment(allDates[k]).format('LL')}`);
+                    }
 
-                // console.log($regattaName);
-                // console.log(new Date($regattaDate));
-                // console.log($regattaVenue);
-                // console.log($regattaLat);
-                // console.log($regattaLng);
+                  }
+                  // console.log(dates);
+                  allDates =[];
+                  // $('#response-wrapper').append(
+                  // `<section class="row response">
+                  //   <h5>${$regattaName}</h5>
+                  //   <h6>Date: ${$regattaDate}</h6>
+                  //   <h6>Venue: ${$regattaVenue}</h6>
+                  // </section>`).hide().fadeIn(1000);
+                }
               }).catch(function(err){
                 alert('Error processing request.');
               });

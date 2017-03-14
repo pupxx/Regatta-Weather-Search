@@ -19,10 +19,21 @@ main{
 
 .response{
   margin-top: 15px;
-  background-color: rgba(149, 233, 147, 0.55);
+  /*background-color: rgba(149, 233, 147, 0.55);*/
   border-radius: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.spinner{
+  display: none;
+  color: lightblue;
+}
+
+section h6,
+section h5{
+  margin: 5px;
 }
 
 section h5{
-  margin: 10px;
+  text-decoration: underline;
 }
