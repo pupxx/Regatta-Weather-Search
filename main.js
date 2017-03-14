@@ -5,14 +5,14 @@ console.log("Cheryln, you are doing great!  Keep Going!!");
 
 // --------------Weather Underground API--------------------
 
-//   $.ajax({
-//     url: `http://api.wunderground.com/api/98df7348c668dee6/conditions/q/${$state}/${$city}.json`,
-//     method: 'Get'
-//   }).then(function(data){
-//     console.log(data);
-//   }).catch(function(error){
-//     alert('error', error);
-//   });
+  // $.ajax({
+  //   url: `http://api.wunderground.com/api/98df7348c668dee6/conditions/q/${$state}/${$city}.json`,
+  //   method: 'Get'
+  // }).then(function(data){
+  //   console.log(data);
+  // }).catch(function(error){
+  //   alert('error', error);
+  // });
 
 // --------------------- On Submit --------------------
 
@@ -42,10 +42,9 @@ $('form').on('submit', function(e){
         url: 'http://galvanize-cors-proxy.herokuapp.com/https://api.regattacentral.com/oauth2/api/token',
         data: 'client_id=5523defb-1094-4648-9559-861c342e5872&client_secret=a299eb83-2f2b-4564-81c1-7c4d5354fbe1&username=cherylnbarber@gmail.com&password=4Bandit5#&grant_type=password'
       }).then(function(key){
-//key returned and sent to RC with lat and lng info for list of regatta's
+//key returned sending RC with lat and lng info for list of regatta's and appending to the DOM
         var $tempKey = key.access_token;
         var $radioValue = $("input[name='sprint-head']:checked").val();
-        console.log($radioValue);
         $('.spinner').show();
           $.ajax({
               type: "GET",
@@ -86,6 +85,23 @@ $('form').on('submit', function(e){
                     <h6>Venue: ${$regattaVenue}</h6>
                   </section>`).hide().fadeIn(1000);
                 }
+
+                $('.name').on('click', function(){
+
+                  $.ajax({
+                    url:
+                     `http://api.wunderground.com/api/98df7348c668dee6/forecast10day/q/${$state}/${$city}.json`,
+                    method: 'Get'
+                  }).then(function(data){
+                    console.log(data);
+                  }).catch(function(error){
+                    alert('error', error);
+                  });
+
+
+                })
+
+
               }).catch(function(err){
                 alert('Error processing request.');
               });
