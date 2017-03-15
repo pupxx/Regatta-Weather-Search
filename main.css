@@ -47,3 +47,8 @@ h5.col-sm-11{
 a{
   cursor: pointer;
 }
+
+.weatherConditions{
+  margin-left: 20px;
+  margin-top: 20px;
+}

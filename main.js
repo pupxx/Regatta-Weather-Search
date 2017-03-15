@@ -19,7 +19,9 @@ console.log("Cheryln, you are doing great!  Keep Going!!");
 
 $('form').on('submit', function(e){
   e.preventDefault();
+  $('.weatherDay').children().remove();
   $('#response-wrapper').children().remove();
+  $('.weatherDetail').children().remove();
   $city = $('#city').val();
   $state = $('select option:selected').val();
   console.log($city);
@@ -86,7 +88,8 @@ $('form').on('submit', function(e){
                 }
 
                 $('.name').on('click', function(){
-
+                  $('.weatherWrapper').children().remove();
+                  $('.weatherDetail').children().remove();
                   $.ajax({
                     url:
                      `http://api.wunderground.com/api/98df7348c668dee6/forecast10day/q/${$state}/${$city}.json`,
@@ -102,18 +105,46 @@ $('form').on('submit', function(e){
 
                       $('.weatherWrapper').append(`
                       <section class="weatherDay col-xs-1">
-                        <img src="${$icon}" alt="">
                         <section>${$day}</section>
-                        <section>${$calendarDate}</section>
+                        <img src="${$icon}" alt="">
+                        <section class="day"><a>${$calendarDate}</a></section>
                       </section>`);
-                    }
+                    }  //end forcast loop
+
+
+                    $('.weatherDay .day a').on('click', function(){
+                      $('.weatherDetail').children().remove();
+                      console.log($(this).text());
+                      for (var j in $tenDayForecast){
+                        if($(this).text() == $tenDayForecast[j].date.day){
+                          $dayOfWeek = $tenDayForecast[j].date.weekday;
+                          $conditions = $tenDayForecast[j].conditions;
+                          console.log($conditions);
+                          $high = $tenDayForecast[j].high.fahrenheit;
+                          $low = $tenDayForecast[j].low.fahrenheit;
+                          $avgWind = $tenDayForecast[j].avewind.mph;
+                          $gusts = $tenDayForecast[j].maxwind.mph;
+
+                          $('.weatherDetail').append(`
+                          <section class=" weatherConditions col-xs-11">
+                            <h4>The weather for ${$dayOfWeek} is:
+                            <h6>conditions: ${$conditions}</h6>
+                            <h6>high: ${$high}&#8457</h6>
+                            <h6>low: ${$low}&#8457</h6>
+                            <h6>Average Wind Speed: ${$avgWind}mph</h6>
+                            <h6>Wind gusts up to: ${$gusts}mph</h6>
+
+                          </section>`);
+                        }
+                      }
+                    });
 
                   }).catch(function(error){
                     alert('error', error);
                   });
 
 
-                })
+                });
 
 
               }).catch(function(err){
