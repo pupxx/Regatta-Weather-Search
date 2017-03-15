@@ -1,19 +1,6 @@
 console.log("Cheryln, you are doing great!  Keep Going!!");
 
 
-// --------------Regatta Central Post Request for temp key--------------------
-// --------------Regatta Central API Request--------------------
-
-// --------------Weather Underground API--------------------
-
-  // $.ajax({
-  //   url: `http://api.wunderground.com/api/98df7348c668dee6/conditions/q/${$state}/${$city}.json`,
-  //   method: 'Get'
-  // }).then(function(data){
-  //   console.log(data);
-  // }).catch(function(error){
-  //   alert('error', error);
-  // });
 
 // --------------------- On Submit --------------------
 
@@ -21,13 +8,16 @@ console.log("Cheryln, you are doing great!  Keep Going!!");
 $('form').on('submit', function(e){
   e.preventDefault();
   $('.weatherDay').children().remove();
-  $('#response-wrapper').children().remove();
+  $('.response-Wrapper').children().remove();
   $('.weatherDetail').children().remove();
+  $('.weatherWrapper').children().remove();
+  $('.forecastHeading').show();
+
   $city = $('#city').val();
   $state = $('select option:selected').val();
   console.log($city);
   console.log($state);
-//
+
 
 // --------------Geo-Code API--------------------
 //the following request gets me the lat and lon co-ordinates
@@ -55,11 +45,13 @@ $('form').on('submit', function(e){
               headers: {"Authorization": $tempKey,
                         "Accept": "application/json"}
               }).then(function(regattaInfo){
+//pulling out regatta info and appending it to the page
                 $('.spinner').hide();
                 console.log(regattaInfo);
                 for (var i in regattaInfo.data){
                   $regattaName = regattaInfo.data[i].name;
                   $regattaVenue = regattaInfo.data[i].venue.name;
+                  $regattaWebPage = regattaInfo.data[i].links[3].uri;
                   $regattaLat = regattaInfo.data[i].venue.latitude;
                   $regattaLng = regattaInfo.data[i].venue.longitude;
 
@@ -82,16 +74,22 @@ $('form').on('submit', function(e){
                   allDates =[];
                   $('.response-Wrapper').append(
                   `<section class="apiResponse">
-                    <h5><a class="name" data-date="${$dates}">${$regattaName}</a></h5>
+                    <h5><a href="${$regattaWebPage}" target="_blank" class="name">${$regattaName}</a></h5>
                     <h6>Date: ${$dates}</h6>
-                    <h6>Venue: ${$regattaVenue}</h6>
+                    <h6 class="venue">Venue: <a data-lat="${$regattaLat}" data-lng="${$regattaLng}">${$regattaVenue}</a></h6>
                   </section>`).hide().fadeIn(1000);
-                }
 
-                $('.name').on('click', function(){
-                  $('.weatherWrapper').children().remove();
-                  $('.weatherDetail').children().remove();
-                  $.ajax({
+
+                }  //end regatta info for looop
+
+                $('.venue a').on('click', function(){
+                  $('.venueMap').children().remove();
+                  $venueLat = $(this).attr('data-lat');
+                  $venueLng = $(this).attr('data-lng');
+                  $('.venueMap').append(`<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d11791.190878961623!2d${$venueLng}!3d${$venueLat}!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1489610185333" width="450" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>`)
+                });
+
+                  $.ajax({   //call to weather underground for 10 day forecast
                     url:
                      `http://api.wunderground.com/api/98df7348c668dee6/forecast10day/q/${$state}/${$city}.json`,
                     method: 'Get'
@@ -143,11 +141,6 @@ $('form').on('submit', function(e){
                   }).catch(function(error){
                     alert('error', error);
                   });
-
-
-                });
-
-
               }).catch(function(err){
                 alert('Error processing request.');
               });
