@@ -1,5 +1,6 @@
 console.log("Cheryln, you are doing great!  Keep Going!!");
 
+
 // --------------Regatta Central Post Request for temp key--------------------
 // --------------Regatta Central API Request--------------------
 
@@ -79,8 +80,8 @@ $('form').on('submit', function(e){
 
                   }
                   allDates =[];
-                  $('#response-wrapper').append(
-                  `<section class="row response">
+                  $('.response-Wrapper').append(
+                  `<section class="apiResponse">
                     <h5><a class="name" data-date="${$dates}">${$regattaName}</a></h5>
                     <h6>Date: ${$dates}</h6>
                     <h6>Venue: ${$regattaVenue}</h6>
