@@ -12,6 +12,7 @@ $('form').on('submit', function(e){
   $('.weatherDetail').children().remove();
   $('.weatherWrapper').children().remove();
   $('.forecastHeading').show();
+  $('.venueMap').empty();
 
   $city = $('#city').val();
   $state = $('select option:selected').val();
@@ -83,7 +84,7 @@ $('form').on('submit', function(e){
                 }  //end regatta info for looop
 
                 $('.venue a').on('click', function(){
-                  $('.venueMap').children().remove();
+                  $('.venueMap').empty();
                   $venueLat = $(this).attr('data-lat');
                   $venueLng = $(this).attr('data-lng');
                   $('.venueMap').append(`<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d11791.190878961623!2d${$venueLng}!3d${$venueLat}!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1489610185333" width="450" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>`)
