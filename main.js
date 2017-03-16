@@ -16,8 +16,6 @@ $('form').on('submit', function(e){
 
   $city = $('#city').val();
   $state = $('select option:selected').val();
-  console.log($city);
-  console.log($state);
 
 
 // --------------Geo-Code API--------------------
@@ -48,7 +46,7 @@ $('form').on('submit', function(e){
               }).then(function(regattaInfo){
 //pulling out regatta info and appending it to the page
                 $('.spinner').hide();
-                console.log(regattaInfo);
+                // console.log(regattaInfo);
                 for (var i in regattaInfo.data){
                   $regattaName = regattaInfo.data[i].name;
                   $regattaVenue = regattaInfo.data[i].venue.name;
@@ -95,13 +93,12 @@ $('form').on('submit', function(e){
                      `http://api.wunderground.com/api/98df7348c668dee6/forecast10day/q/${$state}/${$city}.json`,
                     method: 'Get'
                   }).then(function(forecast){
-                    console.log(forecast);
+                    // console.log(forecast);
                     var $tenDayForecast = forecast.forecast.simpleforecast.forecastday;
                     for(var i in $tenDayForecast){
                       $icon = $tenDayForecast[i].icon_url;
                       $day = $tenDayForecast[i].date.weekday_short;
                       $calendarDate = $tenDayForecast[i].date.day;
-                      console.log($day);
 
                       $('.weatherWrapper').append(`
                       <section class="weatherDay col-xs-1">
@@ -114,12 +111,11 @@ $('form').on('submit', function(e){
 
                     $('.weatherDay .day a').on('click', function(){
                       $('.weatherDetail').children().remove();
-                      console.log($(this).text());
                       for (var j in $tenDayForecast){
                         if($(this).text() == $tenDayForecast[j].date.day){
                           $dayOfWeek = $tenDayForecast[j].date.weekday;
                           $conditions = $tenDayForecast[j].conditions;
-                          console.log($conditions);
+                          // console.log($conditions);
                           $high = $tenDayForecast[j].high.fahrenheit;
                           $low = $tenDayForecast[j].low.fahrenheit;
                           $avgWind = $tenDayForecast[j].avewind.mph;
@@ -127,7 +123,7 @@ $('form').on('submit', function(e){
 
                           $('.weatherDetail').append(`
                           <section class=" weatherConditions col-xs-11">
-                            <h4>The weather for ${$dayOfWeek} is:
+                            <h4>${$dayOfWeek}
                             <h6>conditions: ${$conditions}</h6>
                             <h6>high: ${$high}&#8457</h6>
                             <h6>low: ${$low}&#8457</h6>
@@ -152,5 +148,16 @@ $('form').on('submit', function(e){
   }).catch(function(err){
     console.log('the error is: ', err);
   });
+
+$('.apiResponse').click(function(){
+  console.log("hi");
+  $(this).append(`
+    <div>
+      <h1>hello</h1>
+    </div>
+  `);
+});
+
+
 
 }); //end on submit

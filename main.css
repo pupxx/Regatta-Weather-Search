@@ -1,3 +1,5 @@
+body { padding-bottom: 70px; }
+
 .main-header{
   background-color: #c1b7ae;
   height: 200px;
@@ -55,4 +57,17 @@ a{
 .weatherConditions{
   margin-left: 20px;
   margin-top: 10px;
+}
+
+.venueMap{
+  margin-top: 10px;
+}
+
+iframe{
+  margin-top: 10px;
+  border: 1px solid black;
+  box-shadow: 2px;
+}
+ nav .footer{
+  background-color: black;
 }
