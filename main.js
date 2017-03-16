@@ -124,11 +124,11 @@ $('form').on('submit', function(e){
                           $('.weatherDetail').append(`
                           <section class=" weatherConditions col-xs-11">
                             <h4>${$dayOfWeek}
-                            <h6>conditions: ${$conditions}</h6>
+                            <h6>Conditions: ${$conditions}</h6>
                             <h6>high: ${$high}&#8457</h6>
                             <h6>low: ${$low}&#8457</h6>
-                            <h6>Average Wind Speed: ${$avgWind}mph</h6>
-                            <h6>Wind gusts up to: ${$gusts}mph</h6>
+                            <h6>Average Wind Speed: ${$avgWind} mph</h6>
+                            <h6>Wind gusts up to: ${$gusts} mph</h6>
 
                           </section>`);
                         }
