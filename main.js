@@ -7,13 +7,8 @@ console.log("Cheryln, you are doing great!  Keep Going!!");
 
 $('form').on('submit', function(e){
   e.preventDefault();
-  $('.spinner').show();
-  $('.weatherDay').children().remove();
-  $('.response-Wrapper').children().remove();
-  $('.weatherDetail').children().remove();
-  $('.weatherWrapper').children().remove();
-  $('.forecastHeading').show();
-  $('.venueMap').empty();
+  clearTheStage();
+
 
   $city = $('#city').val();
   $state = $('select option:selected').val();
@@ -39,6 +34,14 @@ $.ajax({
         var $tempKey = key.access_token;
         var $radioValue = $("input[name='sprint-head']:checked").val();
 
+          // function ajaxCall (url) {
+          //   return {
+          //     type: 'GET',
+          //     url: url,
+          //     headers: {"Authorization": $tempKey,
+          //               "Accept": "application/json"}
+          //   }
+          // }
           $.ajax({
               type: "GET",
               url: `http://galvanize-cors-proxy.herokuapp.com/https://api.regattacentral.com/v4.0/regattas?country=US&type=${$radioValue}&latitude=${$lat}&longitude=${$lng}&distance=50&timeframe=upcoming`,
@@ -49,9 +52,9 @@ $.ajax({
                 $('.spinner').hide();
                 // console.log(regattaInfo);
                 for (var i in regattaInfo.data){
+                  $regattaWebPage = regattaInfo.data[i].links[3].uri;
                   $regattaName = regattaInfo.data[i].name;
                   $regattaVenue = regattaInfo.data[i].venue.name;
-                  $regattaWebPage = regattaInfo.data[i].links[3].uri;
                   $regattaLat = regattaInfo.data[i].venue.latitude;
                   $regattaLng = regattaInfo.data[i].venue.longitude;
 
@@ -72,12 +75,10 @@ $.ajax({
 
                   }
                   allDates =[];
-                  $('.response-Wrapper').append(
-                  `<section class="apiResponse">
-                    <h5><a href="${$regattaWebPage}" target="_blank" class="name">${$regattaName}</a></h5>
-                    <h6>Date: ${$dates}</h6>
-                    <h6 class="venue">Venue: <a data-lat="${$regattaLat}" data-lng="${$regattaLng}">${$regattaVenue}</a></h6>
-                  </section>`).hide().fadeIn(1000);
+
+                  appendRegattaInfo($regattaWebPage, $regattaName, $dates, $regattaLat, $regattaLng, $regattaVenue);
+
+
 
 
                 }  //end regatta info for looop
@@ -160,4 +161,23 @@ function weatherInfo (){
     <h6>Wind gusts up to: ${$gusts} mph</h6>
 
   </section>`);
+}
+
+function clearTheStage (){
+  $('.spinner').show();
+  $('.weatherDay').children().remove();
+  $('.response-Wrapper').children().remove();
+  $('.weatherDetail').children().remove();
+  $('.weatherWrapper').children().remove();
+  $('.forecastHeading').show();
+  $('.venueMap').empty();
+}
+
+function appendRegattaInfo (page, name, dates, lat, lng, venue){
+  $('.response-Wrapper').append(
+    `<section class="apiResponse">
+    <h5><a href="${page}" target="_blank" class="name">${name}</a></h5>
+    <h6>Date: ${dates}</h6>
+    <h6 class="venue">Venue: <a data-lat="${lat}" data-lng="${lng}">${venue}</a></h6>
+    </section>`).hide().fadeIn(1000);
 }
